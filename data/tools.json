@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "description": {
+      "zh": "多用途 AI 助手，适合写作、编程、学习和办公。",
+      "en": "A versatile AI assistant for writing, coding, learning, and work."
+    },
+    "logo": "https://logo.clearbit.com/openai.com",
+    "url": "https://chatgpt.com",
+    "category": "writing",
+    "tags": ["LLM", "assistant"],
+    "views": 12000,
+    "publishDate": "2025-08-01",
+    "free": true,
+    "trending": true
+  },
+  {
+    "id": "2",
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "description": {
+      "zh": "高质量文生图工具，适用于设计和创意生成。",
+      "en": "High-quality text-to-image generation for design and creativity."
+    },
+    "logo": "https://logo.clearbit.com/midjourney.com",
+    "url": "https://www.midjourney.com",
+    "category": "design",
+    "tags": ["image", "design"],
+    "views": 9800,
+    "publishDate": "2025-06-20",
+    "free": false,
+    "trending": true,
+    "sponsored": true
+  },
+  {
+    "id": "3",
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "description": {
+      "zh": "AI 编程助手，支持代码补全、生成和解释。",
+      "en": "AI coding assistant for completion, generation, and explanations."
+    },
+    "logo": "https://logo.clearbit.com/github.com",
+    "url": "https://github.com/features/copilot",
+    "category": "programming",
+    "tags": ["coding", "developer"],
+    "views": 8600,
+    "publishDate": "2025-09-12",
+    "free": false,
+    "trending": false
+  }
+]
