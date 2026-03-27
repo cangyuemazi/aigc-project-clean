@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const FAVORITES_KEY = 'ai-tools-favorites';
 
@@ -20,15 +20,15 @@ export function useFavorites() {
     }
   }, [favorites]);
 
-  const toggleFavorite = (toolId: string) => {
+  const toggleFavorite = useCallback((toolId: string) => {
     setFavorites(prev =>
       prev.includes(toolId)
         ? prev.filter(id => id !== toolId)
         : [...prev, toolId]
     );
-  };
+  }, []);
 
-  const isFavorite = (toolId: string) => favorites.includes(toolId);
+  const isFavorite = useCallback((toolId: string) => favorites.includes(toolId), [favorites]);
 
   return { favorites, toggleFavorite, isFavorite };
 }

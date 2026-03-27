@@ -1,3 +1,4 @@
+import { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Eye } from 'lucide-react';
 import type { Tool } from '../types';
@@ -6,10 +7,13 @@ interface TopRankingProps {
   tools: Tool[];
 }
 
-export function TopRanking({ tools }: TopRankingProps) {
-  const topTools = [...tools]
-    .sort((a, b) => b.views - a.views)
-    .slice(0, 10);
+function TopRankingComponent({ tools }: TopRankingProps) {
+  const topTools = useMemo(() => 
+    [...tools]
+      .sort((a, b) => b.views - a.views)
+      .slice(0, 10),
+    [tools]
+  );
 
   return (
     <motion.div
@@ -58,3 +62,5 @@ export function TopRanking({ tools }: TopRankingProps) {
     </motion.div>
   );
 }
+
+export const TopRanking = memo(TopRankingComponent);

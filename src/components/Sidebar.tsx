@@ -68,13 +68,13 @@ export function Sidebar({
       )}
 
       {!isMobile ? (
-        <aside className="w-[280px] flex flex-col h-screen border-r border-gray-200/50 bg-white/80 backdrop-blur-xl">
+        <aside className="fixed left-0 top-0 w-[280px] flex flex-col h-screen border-r border-gray-200/50 bg-white/80 backdrop-blur-xl">
           <div className="flex h-20 items-center justify-between px-6 border-b border-gray-200/50">
             <div 
               className="flex items-center gap-3 cursor-pointer transition-all"
               onClick={handleLogoClick}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30 transition-transform hover:scale-105">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#005fc4] text-white shadow-lg shadow-[#0071e3]/20 transition-transform hover:scale-105">
                 <span className="text-lg font-bold">AI</span>
               </div>
               <span className="text-xl font-bold text-gray-900 transition-colors hover:text-blue-600">智能零零AI工具</span>
@@ -103,7 +103,7 @@ export function Sidebar({
                     className={`
                       flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200
                       ${selectedCategory === category.id && !selectedSubCategory
-                        ? 'bg-blue-50 text-blue-600 shadow-sm'
+                        ? 'bg-[#e8f4fd] text-[#0071e3] shadow-sm'
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                       }
                     `}
@@ -136,7 +136,7 @@ export function Sidebar({
                           className={`
                             flex w-full items-center rounded-lg px-4 py-2.5 text-sm transition-all duration-200
                             ${selectedSubCategory === subCategory.id
-                              ? 'bg-blue-50 text-blue-600 font-medium'
+                              ? 'bg-[#e8f4fd] text-[#0071e3] font-medium'
                               : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                             }
                           `}
@@ -170,7 +170,7 @@ export function Sidebar({
               className="flex items-center gap-3 cursor-pointer transition-all"
               onClick={handleLogoClick}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/30 transition-transform hover:scale-105">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0071e3] to-[#005fc4] text-white shadow-lg shadow-[#0071e3]/20 transition-transform hover:scale-105">
                 <span className="text-lg font-bold">AI</span>
               </div>
               <span className="text-xl font-bold text-gray-900 transition-colors hover:text-blue-600">智能零零AI工具</span>
@@ -205,7 +205,7 @@ export function Sidebar({
                     className={`
                       flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200
                       ${selectedCategory === category.id && !selectedSubCategory
-                        ? 'bg-blue-50 text-blue-600 shadow-sm'
+                        ? 'bg-[#e8f4fd] text-[#0071e3] shadow-sm'
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                       }
                     `}
@@ -238,7 +238,7 @@ export function Sidebar({
                           className={`
                             flex w-full items-center rounded-lg px-4 py-2.5 text-sm transition-all duration-200
                             ${selectedSubCategory === subCategory.id
-                              ? 'bg-blue-50 text-blue-600 font-medium'
+                              ? 'bg-[#e8f4fd] text-[#0071e3] font-medium'
                               : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                             }
                           `}
