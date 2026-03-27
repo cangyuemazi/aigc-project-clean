@@ -1,14 +1,12 @@
 [
-  { "id": "hot", "name": "热门工具", "icon": "Flame" },
   {
     "id": "writing",
     "name": "AI写作工具",
-    "icon": "PencilLine",
+    "icon": "PenTool",
     "subCategories": [
-      { "id": "paper-writing", "name": "论文写作", "categoryId": "writing" },
-      { "id": "novel-writing", "name": "小说创作", "categoryId": "writing" },
-      { "id": "copywriting", "name": "文案生成", "categoryId": "writing" },
-      { "id": "polish", "name": "内容润色", "categoryId": "writing" }
+      { "id": "writing-assistant", "name": "写作助手" },
+      { "id": "article-writing", "name": "文章写作" },
+      { "id": "content-generation", "name": "内容生成" }
     ]
   },
   {
@@ -16,9 +14,9 @@
     "name": "AI PPT生成",
     "icon": "Presentation",
     "subCategories": [
-      { "id": "ppt-generate", "name": "一键生成", "categoryId": "ppt" },
-      { "id": "ppt-template", "name": "模板库", "categoryId": "ppt" },
-      { "id": "ppt-layout", "name": "智能排版", "categoryId": "ppt" }
+      { "id": "ppt-creation", "name": "PPT创建" },
+      { "id": "slide-design", "name": "幻灯片设计" },
+      { "id": "presentation-tools", "name": "演示工具" }
     ]
   },
   {
@@ -26,10 +24,9 @@
     "name": "AI图片工具",
     "icon": "Image",
     "subCategories": [
-      { "id": "text-to-image", "name": "文生图", "categoryId": "image" },
-      { "id": "image-to-image", "name": "图生图", "categoryId": "image" },
-      { "id": "image-edit", "name": "图片编辑", "categoryId": "image" },
-      { "id": "bg-remove", "name": "背景移除", "categoryId": "image" }
+      { "id": "image-generation", "name": "图片生成" },
+      { "id": "image-editing", "name": "图片编辑" },
+      { "id": "image-enhancement", "name": "图片增强" }
     ]
   },
   {
@@ -37,10 +34,9 @@
     "name": "AI视频工具",
     "icon": "Video",
     "subCategories": [
-      { "id": "video-generate", "name": "视频生成", "categoryId": "video" },
-      { "id": "digital-human", "name": "数字人", "categoryId": "video" },
-      { "id": "video-edit", "name": "视频编辑", "categoryId": "video" },
-      { "id": "subtitle", "name": "字幕生成", "categoryId": "video" }
+      { "id": "video-generation", "name": "视频生成" },
+      { "id": "video-editing", "name": "视频编辑" },
+      { "id": "video-effects", "name": "视频特效" }
     ]
   },
   {
@@ -48,19 +44,19 @@
     "name": "AI办公套件",
     "icon": "Briefcase",
     "subCategories": [
-      { "id": "doc", "name": "智能文档", "categoryId": "office" },
-      { "id": "sheet", "name": "表格处理", "categoryId": "office" },
-      { "id": "meeting", "name": "会议纪要", "categoryId": "office" }
+      { "id": "office-assistant", "name": "办公助手" },
+      { "id": "document-processing", "name": "文档处理" },
+      { "id": "meeting-tools", "name": "会议工具" }
     ]
   },
   {
-    "id": "coding",
+    "id": "programming",
     "name": "AI编程工具",
-    "icon": "Code2",
+    "icon": "Code",
     "subCategories": [
-      { "id": "code-gen", "name": "代码生成", "categoryId": "coding" },
-      { "id": "debug", "name": "调试辅助", "categoryId": "coding" },
-      { "id": "explain", "name": "代码解释", "categoryId": "coding" }
+      { "id": "code-assistant", "name": "编程助手" },
+      { "id": "ide-plugins", "name": "IDE插件" },
+      { "id": "debugging", "name": "调试工具" }
     ]
   },
   {
@@ -68,118 +64,19 @@
     "name": "AI设计工具",
     "icon": "Palette",
     "subCategories": [
-      { "id": "ui-design", "name": "UI设计", "categoryId": "design" },
-      { "id": "poster-design", "name": "海报设计", "categoryId": "design" },
-      { "id": "logo-design", "name": "Logo设计", "categoryId": "design" }
+      { "id": "graphic-design", "name": "平面设计" },
+      { "id": "ui-ux-design", "name": "UI/UX设计" },
+      { "id": "logo-design", "name": "Logo设计" }
     ]
   },
   {
     "id": "audio",
     "name": "AI音频工具",
-    "icon": "Mic2",
+    "icon": "Music",
     "subCategories": [
-      { "id": "tts", "name": "语音合成", "categoryId": "audio" },
-      { "id": "music-gen", "name": "音乐生成", "categoryId": "audio" },
-      { "id": "audio-edit", "name": "音频编辑", "categoryId": "audio" }
-    ]
-  },
-  {
-    "id": "fun",
-    "name": "AI趣味玩法",
-    "icon": "Gamepad2",
-    "subCategories": [
-      { "id": "ai-chat", "name": "AI聊天", "categoryId": "fun" },
-      { "id": "role-play", "name": "角色扮演", "categoryId": "fun" },
-      { "id": "fun-gen", "name": "趣味生成", "categoryId": "fun" }
-    ]
-  },
-  {
-    "id": "job",
-    "name": "AI求职招聘",
-    "icon": "FileUser",
-    "subCategories": [
-      { "id": "resume-opt", "name": "简历优化", "categoryId": "job" },
-      { "id": "mock-interview", "name": "模拟面试", "categoryId": "job" },
-      { "id": "job-match", "name": "岗位匹配", "categoryId": "job" }
-    ]
-  },
-  {
-    "id": "translation",
-    "name": "AI翻译工具",
-    "icon": "Languages",
-    "subCategories": [
-      { "id": "text-translate", "name": "文本翻译", "categoryId": "translation" },
-      { "id": "doc-translate", "name": "文档翻译", "categoryId": "translation" },
-      { "id": "real-time", "name": "实时翻译", "categoryId": "translation" }
-    ]
-  },
-  {
-    "id": "learning",
-    "name": "AI学习资源",
-    "icon": "GraduationCap",
-    "subCategories": [
-      { "id": "courses", "name": "课程推荐", "categoryId": "learning" },
-      { "id": "learning-assistant", "name": "学习助手", "categoryId": "learning" },
-      { "id": "qa", "name": "知识问答", "categoryId": "learning" }
-    ]
-  },
-  {
-    "id": "law",
-    "name": "AI法律助手",
-    "icon": "Scale",
-    "subCategories": [
-      { "id": "contract-review", "name": "合同审查", "categoryId": "law" },
-      { "id": "legal-advice", "name": "法律咨询", "categoryId": "law" },
-      { "id": "case-search", "name": "案例检索", "categoryId": "law" }
-    ]
-  },
-  {
-    "id": "ecommerce",
-    "name": "AI电商助手",
-    "icon": "ShoppingBag",
-    "subCategories": [
-      { "id": "product-image", "name": "商品图生成", "categoryId": "ecommerce" },
-      { "id": "ecom-copy", "name": "文案撰写", "categoryId": "ecommerce" },
-      { "id": "comment-analysis", "name": "评论分析", "categoryId": "ecommerce" }
-    ]
-  },
-  {
-    "id": "finance",
-    "name": "AI金融工具",
-    "icon": "BadgeDollarSign",
-    "subCategories": [
-      { "id": "stock-analysis", "name": "股票分析", "categoryId": "finance" },
-      { "id": "report-analysis", "name": "财报解读", "categoryId": "finance" },
-      { "id": "investment-advice", "name": "投资建议", "categoryId": "finance" }
-    ]
-  },
-  {
-    "id": "marketing",
-    "name": "AI营销助手",
-    "icon": "Megaphone",
-    "subCategories": [
-      { "id": "ad-copy", "name": "广告文案", "categoryId": "marketing" },
-      { "id": "social", "name": "社交媒体", "categoryId": "marketing" },
-      { "id": "seo", "name": "SEO优化", "categoryId": "marketing" }
-    ]
-  },
-  {
-    "id": "llm",
-    "name": "AI大模型",
-    "icon": "Bot",
-    "subCategories": [
-      { "id": "cn-llm", "name": "国内大模型", "categoryId": "llm" },
-      { "id": "global-llm", "name": "国外大模型", "categoryId": "llm" },
-      { "id": "api-service", "name": "API服务", "categoryId": "llm" }
-    ]
-  },
-  {
-    "id": "medical",
-    "name": "AI医疗",
-    "icon": "Stethoscope",
-    "subCategories": [
-      { "id": "medical-qa", "name": "医学问答", "categoryId": "medical" },
-      { "id": "image-diagnosis", "name": "影像诊断", "categoryId": "medical" }
+      { "id": "music-generation", "name": "音乐生成" },
+      { "id": "voice-cloning", "name": "语音克隆" },
+      { "id": "audio-editing", "name": "音频编辑" }
     ]
   }
 ]
