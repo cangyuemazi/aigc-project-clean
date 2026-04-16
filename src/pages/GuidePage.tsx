@@ -1,32 +1,29 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 
 export function GuidePage() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-4xl mx-auto px-6 py-12"
-    >
-      <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-8 shadow-card">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">使用指南</h1>
-        <div className="space-y-6 text-gray-600">
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">如何浏览工具</h3>
-            <ol className="list-decimal pl-6 space-y-2">
-              <li>点击左侧分类菜单筛选工具</li>
-              <li>使用搜索框搜索特定工具</li>
-              <li>悬停在工具卡片上查看详细介绍</li>
-              <li>点击"立即体验"按钮访问工具官网</li>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mx-auto max-w-4xl px-6 py-12">
+      <div className="surface-card rounded-[32px] p-8">
+        <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--text-tertiary)]">Guide</p>
+        <h1 className="mb-6 mt-4 text-[2.75rem]">使用指南</h1>
+        <div className="space-y-8 text-[var(--text-secondary)]">
+          <div className="surface-card-quiet rounded-[24px] p-6">
+            <h3 className="mb-3 text-2xl">如何浏览工具</h3>
+            <ol className="list-decimal space-y-2 pl-6 leading-8">
+              <li>点击左侧分类快速缩小范围。</li>
+              <li>通过搜索框按工具名、标签或描述查找。</li>
+              <li>在首页卡片里先看简介，再进入详情页做判断。</li>
+              <li>点击“立即体验”即可前往官方站点。</li>
             </ol>
           </div>
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">功能说明</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>分类筛选：按AI工具类型筛选</li>
-              <li>搜索功能：支持按名称、描述搜索</li>
-              <li>标签系统：快速识别工具特点</li>
-              <li>浏览量显示：查看工具受欢迎程度</li>
+
+          <div className="surface-card-quiet rounded-[24px] p-6">
+            <h3 className="mb-3 text-2xl">页面功能说明</h3>
+            <ul className="list-disc space-y-2 pl-6 leading-8">
+              <li>分类筛选帮助你快速定位具体场景。</li>
+              <li>排序支持热门、最新和名称三种视角。</li>
+              <li>收藏功能会保存在本地浏览器中，方便回看。</li>
+              <li>详情页会展示标签、描述和相关推荐。</li>
             </ul>
           </div>
         </div>

@@ -1,24 +1,18 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+﻿import { lazy, Suspense, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Menu } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { Footer } from './components/Footer';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { FullPageLoader } from './components/LoadingSkeleton';
+import { MobileNav } from './components/MobileNav';
 import { HomePage } from './pages/HomePage';
-import { Menu } from 'lucide-react';
 
-// Lazy load pages for code splitting
-const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
-const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
-const GuidePage = lazy(() => import('./pages/GuidePage').then(m => ({ default: m.GuidePage })));
-const SubmitPage = lazy(() => import('./pages/SubmitPage').then(m => ({ default: m.SubmitPage })));
-
-// Loading fallback component
-function PageLoader() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-gray-500">加载中...</div>
-    </div>
-  );
-}
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const GuidePage = lazy(() => import('./pages/GuidePage').then((m) => ({ default: m.GuidePage })));
+const SubmitPage = lazy(() => import('./pages/SubmitPage').then((m) => ({ default: m.SubmitPage })));
+const ToolDetailPage = lazy(() => import('./pages/ToolDetailPage').then((m) => ({ default: m.ToolDetailPage })));
 
 function AppLayout() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -34,6 +28,7 @@ function AppLayout() {
         setIsSidebarOpen(false);
       }
     };
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -45,7 +40,7 @@ function AppLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#f5f5f7]">
+    <div className="flex min-h-screen">
       <Sidebar
         selectedCategory={selectedCategory}
         selectedSubCategory={selectedSubCategory}
@@ -56,40 +51,49 @@ function AppLayout() {
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
       />
-      
-      <div className={`flex-1 flex flex-col min-w-0 ${!isMobile ? 'ml-[280px]' : ''}`}>
+
+      <div className={`flex min-w-0 flex-1 flex-col ${!isMobile ? 'ml-[280px]' : ''} ${isMobile ? 'pb-16' : ''}`}>
         {isMobile && (
-          <div className="h-16 flex items-center justify-between px-4 bg-white/80 backdrop-blur-xl border-b border-gray-200/50 sticky top-0 z-30">
-            <span className="text-lg font-bold">智能零零AI工具</span>
+          <div className="surface-panel sticky top-0 z-30 flex h-16 items-center justify-between border-b border-[var(--border-color)] px-4">
+            <span className="font-display text-lg">智能零零 AI 工具</span>
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="warm-button-ghost !rounded-2xl !p-2.5"
+              aria-label="打开菜单"
             >
-              <Menu className="h-6 w-6 text-gray-700" />
+              <Menu className="h-5 w-5" />
             </button>
           </div>
         )}
-        
+
         <main className="flex-1">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={
-                <HomePage
-                  searchQuery={searchQuery}
-                  selectedCategory={selectedCategory}
-                  selectedSubCategory={selectedSubCategory}
+          <ErrorBoundary>
+            <Suspense fallback={<FullPageLoader />}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <HomePage
+                      searchQuery={searchQuery}
+                      selectedCategory={selectedCategory}
+                      selectedSubCategory={selectedSubCategory}
+                    />
+                  }
                 />
-              } />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/guide" element={<GuidePage />} />
-              <Route path="/submit" element={<SubmitPage />} />
-            </Routes>
-          </Suspense>
+                <Route path="/tool/:id" element={<ToolDetailPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/guide" element={<GuidePage />} />
+                <Route path="/submit" element={<SubmitPage />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </main>
-        
+
         <Footer />
       </div>
+
+      {isMobile && <MobileNav />}
     </div>
   );
 }
@@ -97,7 +101,9 @@ function AppLayout() {
 export default function App() {
   return (
     <Router>
-      <AppLayout />
+      <ErrorBoundary>
+        <AppLayout />
+      </ErrorBoundary>
     </Router>
   );
 }

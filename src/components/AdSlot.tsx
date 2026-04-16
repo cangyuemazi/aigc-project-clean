@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 
 export function AdSlot() {
   return (
@@ -6,28 +6,38 @@ export function AdSlot() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 shadow-card mb-8 border border-blue-100"
+      className="surface-card relative mb-8 w-full overflow-hidden rounded-[32px] p-8"
     >
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex-1">
-          <div className="inline-block px-3 py-1 bg-blue-100 text-blue-600 text-xs font-semibold rounded-full mb-3">
-            推广位
-          </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
-            在这里展示您的AI工具
+      <div className="pointer-events-none absolute -right-8 top-0 h-40 w-40 rounded-full bg-[rgba(201,100,66,0.08)] blur-3xl" />
+      <div className="pointer-events-none absolute left-8 top-8 h-24 w-24 rounded-full bg-[rgba(214,190,154,0.16)] blur-2xl" />
+
+      <div className="relative grid items-center gap-8 lg:grid-cols-[1.3fr_0.8fr]">
+        <div>
+          <span className="warm-chip">合作展示位</span>
+          <h3 className="mt-5 max-w-2xl text-[2.2rem] sm:text-[2.6rem]">
+            让你的 AI 产品以更克制、更高级的方式被看见。
           </h3>
-          <p className="text-gray-600 mb-4">
-            获得更多曝光，触达精准用户群体
+          <p className="mt-4 max-w-xl text-base leading-8 text-[var(--text-secondary)]">
+            这次主题更新把页面改成了更接近 Claude 设计文档的暖纸张风格，也更适合品牌露出、专题推荐和高质量工具推荐。
           </p>
-          <a
-            href="/contact"
-            className="inline-block px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
-          >
-            了解更多
+          <a href="/contact" className="warm-button mt-6">
+            了解合作方式
           </a>
         </div>
-        <div className="w-48 h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center text-white text-6xl font-bold shadow-xl">
-          AD
+
+        <div className="hidden lg:block">
+          <div className="rounded-[30px] bg-[#26211b] p-8 text-[#faf7ef] shadow-[0_20px_48px_rgba(38,33,27,0.18)]">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#d8c7b2]">Featured placement</p>
+            <div className="mt-10 flex items-end justify-between">
+              <div>
+                <p className="font-display text-6xl leading-none text-[#faf7ef]">AI</p>
+                <p className="mt-3 max-w-[12rem] text-sm leading-7 text-[#d8c7b2]">
+                  Quiet confidence beats noisy gradients.
+                </p>
+              </div>
+              <div className="h-14 w-14 rounded-full bg-[rgba(201,100,66,0.92)]" />
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>

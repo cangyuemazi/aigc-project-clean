@@ -1,6 +1,7 @@
-import { memo, useCallback } from 'react';
+﻿import { memo, useCallback, type MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Heart, ExternalLink } from 'lucide-react';
+import { ExternalLink, Heart } from 'lucide-react';
 import type { Tool } from '../types';
 
 interface ToolCardProps {
@@ -11,106 +12,93 @@ interface ToolCardProps {
 }
 
 function ToolCardComponent({ tool, index, isFavorite = false, onToggleFavorite }: ToolCardProps) {
-  const handleFavoriteClick = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    onToggleFavorite?.(tool.id);
-  }, [tool.id, onToggleFavorite]);
+  const navigate = useNavigate();
+
+  const handleFavoriteClick = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onToggleFavorite?.(tool.id);
+    },
+    [tool.id, onToggleFavorite],
+  );
+
+  const handleCardClick = useCallback(() => {
+    navigate(`/tool/${tool.id}`);
+  }, [navigate, tool.id]);
+
+  const handleLinkClick = useCallback((e: MouseEvent) => {
+    e.stopPropagation();
+  }, []);
+
   return (
-    <motion.div
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.4, 
-        delay: index * 0.05,
-        ease: "easeOut"
-      }}
-      whileHover={{ 
-        y: -4,
-        transition: { 
-          duration: 0.3, 
-          ease: [0.2, 0.9, 0.4, 1.1] 
-        } 
-      }}
-      className="group relative overflow-hidden rounded-2xl bg-white/90 backdrop-blur-sm p-6 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.02),0_2px_4px_-1px_rgba(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.05),0_8px_10px_-6px_rgba(0,0,0,0.02)]"
+      transition={{ duration: 0.4, delay: index * 0.05, ease: 'easeOut' }}
+      whileHover={{ y: -4, transition: { duration: 0.3, ease: [0.2, 0.9, 0.4, 1.1] } }}
+      onClick={handleCardClick}
+      className="surface-card card-hover group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[28px] p-6"
     >
-      {/* Favorite Button */}
       <button
         onClick={handleFavoriteClick}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-200 group/fav"
+        className="surface-card-quiet absolute right-5 top-5 z-10 rounded-full p-2.5 transition-all duration-200 group/fav hover:border-[rgba(201,100,66,0.24)]"
+        aria-label={isFavorite ? '取消收藏' : '收藏工具'}
       >
         <Heart
           className={`h-5 w-5 transition-all duration-200 ${
             isFavorite
-              ? 'fill-red-500 text-red-500'
-              : 'text-gray-400 group-hover/fav:text-red-500'
+              ? 'fill-[var(--primary-color)] text-[var(--primary-color)]'
+              : 'text-[var(--text-tertiary)] group-hover/fav:text-[var(--primary-color)]'
           }`}
         />
       </button>
 
       <div className="flex items-start gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0071e3] to-[#005fc4] text-white shadow-lg shadow-[#0071e3]/20 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl">
-          <img 
-            src={tool.logo} 
+        <div className="warm-brand-mark flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] transition-transform duration-300 group-hover:scale-105">
+          <img
+            src={tool.logo}
             alt={tool.name}
-            className="h-8 w-8 object-cover rounded-lg"
+            className="h-8 w-8 rounded-lg object-cover"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = 'none';
             }}
           />
         </div>
         <div className="min-w-0 flex-1">
-          <a
-            href={tool.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight"
-          >
+          <p className="text-[11px] uppercase tracking-[0.22em] text-[var(--text-tertiary)]">精选工具</p>
+          <h3 className="mt-2 text-[1.35rem] leading-tight transition-colors group-hover:text-[var(--primary-color)]">
             {tool.name}
-          </a>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {tool.tags.slice(0, 3).map((tag, tagIndex) => (
-              <span 
-                key={tagIndex}
-                className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 transition-colors group-hover:bg-[#e8f4fd] group-hover:text-[#0071e3]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          </h3>
         </div>
       </div>
 
-      {/* Hover Description */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 0, y: -10 }}
-        whileHover={{ 
-          opacity: 1, 
-          y: 0,
-          transition: { duration: 0.2 }
-        }}
-        className="absolute inset-x-6 top-24 rounded-xl bg-gray-900/90 px-4 py-3 text-sm text-gray-100 shadow-lg backdrop-blur-sm"
-      >
-        <p className="line-clamp-2 leading-relaxed">{tool.description}</p>
-      </motion.div>
+      <p className="mt-5 line-clamp-3 text-sm leading-7 text-[var(--text-secondary)]">{tool.description}</p>
 
-      {/* View Count */}
-      <div className="mt-4 flex items-center justify-between">
-        <span className="text-xs text-gray-400 flex items-center gap-1">
-          <span>👁️</span>
-          {(tool.views / 10000).toFixed(1)}万
+      <div className="mt-5 flex flex-wrap gap-2">
+        {tool.tags.slice(0, 3).map((tag, tagIndex) => (
+          <span key={tagIndex} className="warm-chip-neutral">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-auto flex items-center justify-between gap-3 pt-6">
+        <span className="text-xs uppercase tracking-[0.16em] text-[var(--text-tertiary)]">
+          约 {(tool.views / 10000).toFixed(1)} 万次浏览
         </span>
         <a
           href={tool.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1 rounded-lg bg-[#e8f4fd] px-3 py-1.5 text-xs font-semibold text-[#0071e3] transition-colors hover:bg-[#0071e3] hover:text-white"
+          onClick={handleLinkClick}
+          className="warm-button !px-4 !py-2.5 !text-xs"
         >
           立即体验
           <ExternalLink className="h-3 w-3" />
         </a>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
